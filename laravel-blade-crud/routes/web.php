@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 // RENAME THE FUCKING METHODS AND THE FUCKING ROUTE AND FUCKING FILES,
 // SO THAT I CAN FUCKING UNDERSTAND FUCKING EVERYTHING!
-
+// NEXT.JS + EXPRESS.JS
 
 // SHOW/LIST
 Route::get('/show/{id}', [BookController::class, 'show']);
