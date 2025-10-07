@@ -17,6 +17,7 @@ class BookController extends Controller
 
     public function show(string $id): View
     {
+        // $book = Book::find($id);
         return view('books.show', [
             'book' => Book::findOrFail($id)
         ]);
@@ -29,8 +30,6 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-
-
         //  protected $fillable = [
         //         'author',
         //         'title',
@@ -38,7 +37,6 @@ class BookController extends Controller
         //         'year',
         //         'description'
         //     ];
-
         $validated = $request->validate([
             'author' => 'required|string|max:255',
             'title' => 'required|string|max:255',
@@ -46,7 +44,10 @@ class BookController extends Controller
             'year' => 'required|integer|min:0',
             'description' => 'required|string'
         ]);
-
+        // $data = [
+        //     'author' => $request->author,
+        // ]
+        // $book = Book::create($data)
         // Book::create([
         //     'author' => $validated['author'],
         //     'title' => $validated['title'],
@@ -54,9 +55,7 @@ class BookController extends Controller
         //     'year' => $validated['year'],
         //     'description' => $validated['description']
         // ]);
-
         $book = Book::create($validated);
-
         // return redirect('/list');
         return redirect()->route('books.list');
     }
@@ -76,10 +75,12 @@ class BookController extends Controller
             'year' => 'required|integer|min:0',
             'description' => 'required|string'
         ]);
-
         $book = Book::findOrFail($id);
         $book->update($validated);
         return redirect('/list');
+
+        // SOFT UPDATE
+
     }
 
     public function delete(): View
@@ -90,6 +91,10 @@ class BookController extends Controller
     public function destroy(Request $request)
     {
 
+        // SOFT DELETE
+
+
+        // HARD DELETE
         $book = Book::findOrFail($request->bookid);
         $book->delete();
 
